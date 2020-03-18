@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Drawing;
+using System.Collections.Generic;
 
 namespace Shapes
 {
@@ -9,14 +10,24 @@ namespace Shapes
     [Serializable]
     public class Quadrangle : AbstractShape
     {
-        // Реализация метода отрисовки для Quadrangle(используется в Rectangle и Square)
         public override void Draw(Graphics graphics)
         {
-            graphics.FillRectangle(new SolidBrush(brushColor), x1, y1, x2 - x1, y2 - y1);
-            graphics.DrawRectangle(new Pen(penColor), x1, y1, x2 - x1, y2 - y1);
+            graphics.FillRectangle(new SolidBrush(brushColor),
+                                   pointArray[0].X,
+                                   pointArray[0].Y,
+                                   pointArray[1].X - pointArray[0].X,
+                                   pointArray[1].Y - pointArray[0].Y);
+            graphics.DrawRectangle(new Pen(penColor),
+                                   pointArray[0].X,
+                                   pointArray[0].Y,
+                                   pointArray[1].X - pointArray[0].X,
+                                   pointArray[1].Y - pointArray[0].Y);
         }
-        // Реализация метода инициализации
-        public override void Init(Color p, Color b, int X1, int Y1, int X2, int Y2)
+        public override void Init(Point[] pointarray)
+        {
+            throw new NotImplementedException();
+        }
+        public override object Clone()
         {
             throw new NotImplementedException();
         }

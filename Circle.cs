@@ -9,16 +9,30 @@ namespace Shapes
     [Serializable]
     public class Circle : EllipseLike
     {
-        // Реализация метода инициализации
-        public override void Init(Color p, Color b, int X1, int Y1, int X2, int Y2)
+        public Circle()
         {
-            HelpFunctions.SortCoord(ref X1, ref Y1, ref X2, ref Y2);
-            penColor = p;
-            brushColor = b;
-            x1 = X1;
-            y1 = Y1;
-            x2 = Y2 - Y1 + X1;
-            y2 = Y2;
+            pointArray = new Point[2];
+            maxNumberOfDots = 2;
+        }
+        public Circle(Color pencolor, Color brushcolor)
+        {
+            penColor = pencolor;
+            brushColor = brushcolor;
+            pointArray = new Point[2];
+            maxNumberOfDots = 2;
+        }
+        public override void Init(Point[] pointarray)
+        {
+            base.pointArray = (Point[])pointarray.Clone();
+            HelpFunctions.SortCoord(ref base.pointArray);
+            // x2 = Y2 - Y1 + X1  для уравнивания вертикального и горизонтального радиусов;
+            base.pointArray[1].X = base.pointArray[1].Y - base.pointArray[0].Y + base.pointArray[0].X;
+        }
+        public override object Clone()
+        {
+            var tmp = new Circle(penColor, brushColor);
+            tmp.Init(pointArray);
+            return tmp;
         }
     }
 }

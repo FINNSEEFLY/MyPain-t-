@@ -7,20 +7,23 @@ namespace Shapes
     // Абстрактный класс для всех фигур
     //
     [Serializable]
-    public abstract class AbstractShape
+    public abstract class AbstractShape : ICloneable
     {
-        // Цвет пера(границ фигуры)
+        // penColor - Цвет пера(границ фигуры)
+        // brushColor - Цвет заливки фигуры
+        // pointArray Точки необходимые для отрисовки
+        // maxNumberOfDots - Количество точек необходимое для отрисовки
+        //                   Если количество точек не известно - инициализируется нулем
         public Color penColor;
-        // Цвет заливки фигуры
         public Color brushColor;
-        // Координаты области фигуры
-        // Point(x1,y1) - Левый верхний угол
-        // Point(x2,y2) - Правый нижний угол
-        public int x1, y1, x2, y2;
+        public Point[] pointArray;
+        public int maxNumberOfDots=0;
 
         // Абстрактный метод отрисовки
         public abstract void Draw(Graphics graphics);
         // Абстрактный метод инициализации
-        public abstract void Init(Color p, Color b, int X1, int Y1, int X2, int Y2);
+        public abstract void Init(Point[] pointarray);
+        // Абстрактный метод клонирования
+        public abstract object Clone();
     }
 }

@@ -9,20 +9,31 @@ namespace Shapes
     [Serializable]
     public class Line : AbstractShape
     {
-        // Реализация метода отрисовки для Line
+        public Line()
+        {
+            pointArray = new Point[2];
+            maxNumberOfDots = 2;
+        }
+        public Line(Color pencolor, Color brushcolor)
+        {
+            penColor = pencolor;
+            brushColor = brushcolor;
+            pointArray = new Point[2];
+            maxNumberOfDots = 2;
+        }
         public override void Draw(Graphics graphics)
         {
-            graphics.DrawLine(new Pen(penColor), x1, y1, x2, y2);
+            graphics.DrawLine(new Pen(penColor),pointArray[0],pointArray[1]);
         }
-        // Реализация метода инициализации
-        public override void Init(Color p, Color b, int X1, int Y1, int X2, int Y2)
+        public override void Init(Point[] pa)
         {
-            penColor = p;
-            brushColor = b;
-            x1 = X1;
-            y1 = Y1;
-            x2 = X2;
-            y2 = Y2;
+            pointArray = (Point[])pa.Clone();
+        }
+        public override object Clone()
+        {
+            var tmp = new Line(penColor, brushColor);
+            tmp.Init(pointArray);
+            return tmp;
         }
     }
 }

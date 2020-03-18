@@ -1,5 +1,6 @@
 ﻿using System;
 using Shapes;
+using System.Drawing;
 
 namespace ShapeListMaintenance
 {
@@ -8,9 +9,9 @@ namespace ShapeListMaintenance
     // Name - Название фигуры
     // Create - Ссылка на метод для создания объекта
     [Serializable]
-    public class ShapeDescription
+    public class ShapeFactoryDescription
     {
         public String Name { get; set; }
-        public Func<AbstractShape> Create { get; set; }
+        public Func<Color,Color,AbstractShape> Create { get; set; }
     }
 }

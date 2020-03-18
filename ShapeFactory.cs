@@ -1,36 +1,103 @@
 ﻿using Shapes;
+using System;
+using System.Drawing;
 
 namespace ShapeListMaintenance
 {
     //
     // Класс для создания экземпляров фигур
     // 
-    public static class ShapeFactory
+    public abstract class AbstractShapeFactory
     {
-        // Методы реализующие выбор и создание экземпляров фигур
-        public static AbstractShape LineCreate()
+        public String ShapeName;
+        public abstract AbstractShape Create(Color pencolor, Color brushcolor);
+    }
+    public class LineFactory : AbstractShapeFactory
+    {
+        public LineFactory()
         {
-            return new Line();
+            ShapeName = "Линия";
         }
-        public static AbstractShape RectangleCreate()
+        public override AbstractShape Create(Color pencolor, Color brushcolor)
         {
-            return new Shapes.Rectangle();
+            return new Line(pencolor,brushcolor);
         }
-        public static AbstractShape SquareCreate()
+    }
+    public class RectangleFactory : AbstractShapeFactory
+    {
+        public RectangleFactory()
         {
-            return new Square();
+            ShapeName = "Прямоугольник";
         }
-        public static AbstractShape TriangleCreate()
+        public override AbstractShape Create(Color pencolor, Color brushcolor)
         {
-            return new Triangle();
+            return new Shapes.Rectangle(pencolor, brushcolor);
         }
-        public static AbstractShape EllipseCreate()
+    }
+    public class SquareFactory : AbstractShapeFactory
+    {
+        public SquareFactory()
         {
-            return new Ellipse();
+            ShapeName = "Квадрат";
         }
-        public static AbstractShape CircleCreate()
+        public override AbstractShape Create(Color pencolor, Color brushcolor)
         {
-            return new Circle();
+            return new Square(pencolor, brushcolor);
+        }
+    }
+    public class TriangleFactory : AbstractShapeFactory
+    {
+        public TriangleFactory()
+        {
+            ShapeName = "Треугольник";
+        }
+        public override AbstractShape Create(Color pencolor, Color brushcolor)
+        {
+            return new Triangle(pencolor, brushcolor);
+        }
+    }
+    public class EllipseFactory: AbstractShapeFactory
+    {
+        public EllipseFactory()
+        {
+            ShapeName = "Эллипс";
+        }
+        public override AbstractShape Create(Color pencolor, Color brushcolor)
+        {
+            return new Ellipse(pencolor, brushcolor);
+        }
+    }
+    public class CircleFactory : AbstractShapeFactory       
+    {
+        public CircleFactory()
+        {
+            ShapeName = "Круг";
+        }
+        public override AbstractShape Create(Color pencolor, Color brushcolor)
+        {
+            return new Circle(pencolor, brushcolor);
+        }
+    }
+    public class PolygonFactory : AbstractShapeFactory
+    {
+        public PolygonFactory()
+        {
+            ShapeName = "Многоугольник";
+        }
+        public override AbstractShape Create(Color pencolor, Color brushcolor)
+        {
+            return new Polygon(pencolor, brushcolor);
+        }
+    }
+    public class PolylineFactory : AbstractShapeFactory
+    {
+        public PolylineFactory()
+        {
+            ShapeName = "Ломаная";
+        }
+        public override AbstractShape Create(Color pencolor, Color brushcolor)
+        {
+            return new Polyline(pencolor, brushcolor);
         }
     }
 }
