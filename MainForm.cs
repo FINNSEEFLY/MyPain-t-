@@ -258,6 +258,8 @@ namespace Lab1
             {
                 try
                 {
+                    shapeList.Clear();
+                    ClearMainCanvas();
                     shapeList = (ShapeList)formatter.Deserialize(fileStream);
                     PrepareGraphicsToDrawing();
                     shapeList.Draw(mainGraphics);
@@ -268,7 +270,6 @@ namespace Lab1
                     MessageBox.Show("Файл поврежден, чтение невозможно \n" + "Расшифровка ошибки: \n" + exception.Message, "Ошибка чтения файла", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
-
         }
     }
 }

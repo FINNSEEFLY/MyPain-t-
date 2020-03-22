@@ -194,12 +194,15 @@
             // saveFileDialog
             // 
             this.saveFileDialog.DefaultExt = "shp";
+            this.saveFileDialog.FileName = "ShapeList";
+            this.saveFileDialog.Filter = "Файл списка фигур (*.shp)|*.shp";
             this.saveFileDialog.Title = "Сохранение списка фигур";
             // 
             // openFileDialog
             // 
             this.openFileDialog.DefaultExt = "shp";
-            this.openFileDialog.FileName = "openFileDialog1";
+            this.openFileDialog.FileName = "ShapeList";
+            this.openFileDialog.Filter = "Файл списка фигур (*.shp)|*.shp";
             this.openFileDialog.Title = "Загрузка списка фигур";
             // 
             // lblInfo
