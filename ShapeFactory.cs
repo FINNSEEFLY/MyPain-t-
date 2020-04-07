@@ -2,14 +2,14 @@
 using System;
 using System.Drawing;
 
-namespace ShapeListMaintenance
+namespace ShapeMaintenance
 {
     //
     // Класс для создания экземпляров фигур
     // 
     public abstract class AbstractShapeFactory
     {
-        public String ShapeName;
+        public String ShapeName { get; set; }
         public abstract AbstractShape Create(Color pencolor, Color brushcolor);
     }
     public class LineFactory : AbstractShapeFactory

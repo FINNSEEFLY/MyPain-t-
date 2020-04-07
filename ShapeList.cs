@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using Shapes;
 
-namespace ShapeListMaintenance
+namespace ShapeMaintenance
 {
     //
     // Класс списка фигур
@@ -11,25 +11,40 @@ namespace ShapeListMaintenance
     [Serializable]
     public class ShapeList
     {
-        private List<AbstractShape> ListOfShapes;
+        private readonly List<AbstractShape> listOfShapes;
         public ShapeList()
         {
-            ListOfShapes = new List<Shapes.AbstractShape>();
+            listOfShapes = new List<Shapes.AbstractShape>();
         }
         public void Draw(Graphics graphics)
         {
-            foreach (AbstractShape shape in ListOfShapes)
+            foreach (AbstractShape shape in listOfShapes)
             {
                 shape.Draw(graphics);
             }
         }
         public void AddToList(AbstractShape shape)
         {
-            ListOfShapes.Add((AbstractShape)shape.Clone());
+            listOfShapes.Add((AbstractShape)shape.Clone());
         }
         public void Clear()
         {
-            ListOfShapes.Clear();
+            listOfShapes.Clear();
+        }
+        public void DelLastShape()
+        {
+            if (listOfShapes.Count != 0)
+            {
+                listOfShapes.RemoveAt(listOfShapes.Count - 1);
+            }
+        }
+        public static ShapeList operator +(ShapeList firstlist, ShapeList secondlist)
+        {
+            foreach(var item in secondlist.listOfShapes)
+            {
+                firstlist.AddToList(item);
+            }
+            return firstlist;
         }
     }
 }

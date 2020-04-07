@@ -12,14 +12,14 @@ namespace Shapes
         public Circle()
         {
             pointArray = new Point[2];
-            maxNumberOfDots = 2;
+            MaxNumberOfDots = 2;
         }
         public Circle(Color pencolor, Color brushcolor)
         {
             penColor = pencolor;
             brushColor = brushcolor;
             pointArray = new Point[2];
-            maxNumberOfDots = 2;
+            MaxNumberOfDots = 2;
         }
         public override void Init(Point[] pointarray)
         {

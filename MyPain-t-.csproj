@@ -6,8 +6,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{E82B5D26-2E9B-4850-94AF-9227AE390E12}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>Lab1</RootNamespace>
-    <AssemblyName>Lab1</AssemblyName>
+    <RootNamespace>MyPaint</RootNamespace>
+    <AssemblyName>MyPain-t-</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -76,7 +76,7 @@
     <Compile Include="EllipseLike.cs" />
     <Compile Include="Polygon.cs" />
     <Compile Include="Polyline.cs" />
-    <Compile Include="ShapeDescription.cs" />
+    <Compile Include="ShapeFactoryDescription.cs" />
     <Compile Include="ShapeFactory.cs" />
     <Compile Include="ShapeList.cs" />
     <Compile Include="Triangle.cs" />
@@ -105,6 +105,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="packages.config" />
     <None Include="Properties\DataSources\MainForm.datasource" />

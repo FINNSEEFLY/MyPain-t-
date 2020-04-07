@@ -1,4 +1,4 @@
-﻿namespace Lab1
+﻿namespace MyPaint
 {
     partial class MainForm
     {
@@ -29,9 +29,10 @@
         private void InitializeComponent()
         {
             this.pnlToolBar = new System.Windows.Forms.Panel();
+            this.btnDelLastShape = new System.Windows.Forms.Button();
+            this.btnLoadDLL = new System.Windows.Forms.Button();
             this.btnLoadShapes = new System.Windows.Forms.Button();
             this.btnSaveShapes = new System.Windows.Forms.Button();
-            this.btnDrawShapeList = new System.Windows.Forms.Button();
             this.btnClearShapeList = new System.Windows.Forms.Button();
             this.pnlShapes = new System.Windows.Forms.Panel();
             this.cmbShapeSwitch = new System.Windows.Forms.ComboBox();
@@ -42,8 +43,9 @@
             this.colorDialog = new System.Windows.Forms.ColorDialog();
             this.picCanvas = new System.Windows.Forms.PictureBox();
             this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
-            this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
+            this.openFileDialogLoadShapeList = new System.Windows.Forms.OpenFileDialog();
             this.lblInfo = new System.Windows.Forms.Label();
+            this.openFileDialogLoadAssembly = new System.Windows.Forms.OpenFileDialog();
             this.pnlToolBar.SuspendLayout();
             this.pnlShapes.SuspendLayout();
             this.pnlColorBar.SuspendLayout();
@@ -53,9 +55,10 @@
             // pnlToolBar
             // 
             this.pnlToolBar.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.pnlToolBar.Controls.Add(this.btnDelLastShape);
+            this.pnlToolBar.Controls.Add(this.btnLoadDLL);
             this.pnlToolBar.Controls.Add(this.btnLoadShapes);
             this.pnlToolBar.Controls.Add(this.btnSaveShapes);
-            this.pnlToolBar.Controls.Add(this.btnDrawShapeList);
             this.pnlToolBar.Controls.Add(this.btnClearShapeList);
             this.pnlToolBar.Controls.Add(this.pnlShapes);
             this.pnlToolBar.Controls.Add(this.pnlColorBar);
@@ -66,14 +69,41 @@
             this.pnlToolBar.Size = new System.Drawing.Size(884, 70);
             this.pnlToolBar.TabIndex = 0;
             // 
+            // btnDelLastShape
+            // 
+            this.btnDelLastShape.Dock = System.Windows.Forms.DockStyle.Left;
+            this.btnDelLastShape.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.btnDelLastShape.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.btnDelLastShape.Location = new System.Drawing.Point(700, 0);
+            this.btnDelLastShape.Name = "btnDelLastShape";
+            this.btnDelLastShape.Size = new System.Drawing.Size(72, 70);
+            this.btnDelLastShape.TabIndex = 3;
+            this.btnDelLastShape.Text = "Удалить последнюю фигуру";
+            this.btnDelLastShape.UseVisualStyleBackColor = true;
+            this.btnDelLastShape.Click += new System.EventHandler(this.btnDelLastShape_Click);
+            // 
+            // btnLoadDLL
+            // 
+            this.btnLoadDLL.Dock = System.Windows.Forms.DockStyle.Left;
+            this.btnLoadDLL.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.btnLoadDLL.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.btnLoadDLL.Location = new System.Drawing.Point(622, 0);
+            this.btnLoadDLL.Name = "btnLoadDLL";
+            this.btnLoadDLL.Size = new System.Drawing.Size(78, 70);
+            this.btnLoadDLL.TabIndex = 7;
+            this.btnLoadDLL.Text = "Загрузить новые фигуры";
+            this.btnLoadDLL.UseVisualStyleBackColor = true;
+            this.btnLoadDLL.Click += new System.EventHandler(this.btnLoadDLL_Click);
+            // 
             // btnLoadShapes
             // 
             this.btnLoadShapes.Dock = System.Windows.Forms.DockStyle.Left;
+            this.btnLoadShapes.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.btnLoadShapes.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.btnLoadShapes.Location = new System.Drawing.Point(631, 0);
+            this.btnLoadShapes.Location = new System.Drawing.Point(544, 0);
             this.btnLoadShapes.Name = "btnLoadShapes";
             this.btnLoadShapes.Size = new System.Drawing.Size(78, 70);
-            this.btnLoadShapes.TabIndex = 7;
+            this.btnLoadShapes.TabIndex = 6;
             this.btnLoadShapes.Text = "Загрузить фигуры из файла";
             this.btnLoadShapes.UseVisualStyleBackColor = true;
             this.btnLoadShapes.Click += new System.EventHandler(this.btnLoadShapes_Click);
@@ -81,36 +111,26 @@
             // btnSaveShapes
             // 
             this.btnSaveShapes.Dock = System.Windows.Forms.DockStyle.Left;
+            this.btnSaveShapes.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.btnSaveShapes.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.btnSaveShapes.Location = new System.Drawing.Point(553, 0);
+            this.btnSaveShapes.Location = new System.Drawing.Point(466, 0);
             this.btnSaveShapes.Name = "btnSaveShapes";
             this.btnSaveShapes.Size = new System.Drawing.Size(78, 70);
-            this.btnSaveShapes.TabIndex = 6;
+            this.btnSaveShapes.TabIndex = 5;
             this.btnSaveShapes.Text = "Сохранить фигуры в файл";
             this.btnSaveShapes.UseVisualStyleBackColor = true;
             this.btnSaveShapes.Click += new System.EventHandler(this.btnSaveShapes_Click);
             // 
-            // btnDrawShapeList
-            // 
-            this.btnDrawShapeList.Dock = System.Windows.Forms.DockStyle.Left;
-            this.btnDrawShapeList.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.btnDrawShapeList.Location = new System.Drawing.Point(466, 0);
-            this.btnDrawShapeList.Name = "btnDrawShapeList";
-            this.btnDrawShapeList.Size = new System.Drawing.Size(87, 70);
-            this.btnDrawShapeList.TabIndex = 5;
-            this.btnDrawShapeList.Text = "Нарисовать список фигур";
-            this.btnDrawShapeList.UseVisualStyleBackColor = true;
-            this.btnDrawShapeList.Click += new System.EventHandler(this.btnDrawShapeList_Click);
-            // 
             // btnClearShapeList
             // 
             this.btnClearShapeList.Dock = System.Windows.Forms.DockStyle.Left;
+            this.btnClearShapeList.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.btnClearShapeList.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.btnClearShapeList.Location = new System.Drawing.Point(394, 0);
             this.btnClearShapeList.Name = "btnClearShapeList";
             this.btnClearShapeList.Size = new System.Drawing.Size(72, 70);
             this.btnClearShapeList.TabIndex = 4;
-            this.btnClearShapeList.Text = "Очистить фигуры";
+            this.btnClearShapeList.Text = "Очистить холст";
             this.btnClearShapeList.UseVisualStyleBackColor = true;
             this.btnClearShapeList.Click += new System.EventHandler(this.btnClearShapeList_Click);
             // 
@@ -129,6 +149,7 @@
             // 
             this.cmbShapeSwitch.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.cmbShapeSwitch.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbShapeSwitch.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.cmbShapeSwitch.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.cmbShapeSwitch.FormattingEnabled = true;
             this.cmbShapeSwitch.Location = new System.Drawing.Point(0, 42);
@@ -160,6 +181,7 @@
             // btnLineColor
             // 
             this.btnLineColor.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnLineColor.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.btnLineColor.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.btnLineColor.Location = new System.Drawing.Point(0, 35);
             this.btnLineColor.Name = "btnLineColor";
@@ -172,6 +194,7 @@
             // btnFillColor
             // 
             this.btnFillColor.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnFillColor.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.btnFillColor.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.btnFillColor.Location = new System.Drawing.Point(0, 0);
             this.btnFillColor.Name = "btnFillColor";
@@ -183,6 +206,7 @@
             // 
             // picCanvas
             // 
+            this.picCanvas.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.picCanvas.Dock = System.Windows.Forms.DockStyle.Fill;
             this.picCanvas.InitialImage = null;
             this.picCanvas.Location = new System.Drawing.Point(0, 70);
@@ -198,12 +222,12 @@
             this.saveFileDialog.Filter = "Файл списка фигур (*.shp)|*.shp";
             this.saveFileDialog.Title = "Сохранение списка фигур";
             // 
-            // openFileDialog
+            // openFileDialogLoadShapeList
             // 
-            this.openFileDialog.DefaultExt = "shp";
-            this.openFileDialog.FileName = "ShapeList";
-            this.openFileDialog.Filter = "Файл списка фигур (*.shp)|*.shp";
-            this.openFileDialog.Title = "Загрузка списка фигур";
+            this.openFileDialogLoadShapeList.DefaultExt = "shp";
+            this.openFileDialogLoadShapeList.FileName = "ShapeList";
+            this.openFileDialogLoadShapeList.Filter = "Файл списка фигур (*.shp)|*.shp";
+            this.openFileDialogLoadShapeList.Title = "Загрузка списка фигур";
             // 
             // lblInfo
             // 
@@ -215,6 +239,10 @@
             this.lblInfo.Size = new System.Drawing.Size(35, 13);
             this.lblInfo.TabIndex = 2;
             this.lblInfo.Text = "lblInfo";
+            // 
+            // openFileDialogLoadAssembly
+            // 
+            this.openFileDialogLoadAssembly.Filter = "Библиотека с фигурами (*.dll)|*.dll";
             // 
             // MainForm
             // 
@@ -228,6 +256,7 @@
             this.MinimumSize = new System.Drawing.Size(900, 500);
             this.Name = "MainForm";
             this.Text = "MyPain-t-";
+            this.SizeChanged += new System.EventHandler(this.MainForm_Resize);
             this.Resize += new System.EventHandler(this.MainForm_Resize);
             this.pnlToolBar.ResumeLayout(false);
             this.pnlShapes.ResumeLayout(false);
@@ -250,13 +279,15 @@
         private System.Windows.Forms.Label lblShapeSwitch;
         private System.Windows.Forms.ComboBox cmbShapeSwitch;
         private System.Windows.Forms.Button btnClearShapeList;
-        private System.Windows.Forms.Button btnDrawShapeList;
         private System.Windows.Forms.PictureBox picCanvas;
         private System.Windows.Forms.Button btnSaveShapes;
         private System.Windows.Forms.SaveFileDialog saveFileDialog;
-        private System.Windows.Forms.OpenFileDialog openFileDialog;
+        private System.Windows.Forms.OpenFileDialog openFileDialogLoadShapeList;
         private System.Windows.Forms.Button btnLoadShapes;
         private System.Windows.Forms.Label lblInfo;
+        private System.Windows.Forms.Button btnLoadDLL;
+        private System.Windows.Forms.OpenFileDialog openFileDialogLoadAssembly;
+        private System.Windows.Forms.Button btnDelLastShape;
     }
 }
 

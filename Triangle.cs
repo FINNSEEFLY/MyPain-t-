@@ -12,14 +12,14 @@ namespace Shapes
         public Triangle()
         {
             pointArray = new Point[3];
-            maxNumberOfDots = 3;
+            MaxNumberOfDots = 3;
         }
         public Triangle(Color pencolor, Color brushcolor)
         {
             penColor = pencolor;
             brushColor = brushcolor;
             pointArray = new Point[3];
-            maxNumberOfDots = 3;
+            MaxNumberOfDots = 3;
         }
         public override void Init(Point[] pointarray)
         {

@@ -2,7 +2,7 @@
 using Shapes;
 using System.Drawing;
 
-namespace ShapeListMaintenance
+namespace ShapeMaintenance
 {
     //
     // Класс краткого описания фигуры:

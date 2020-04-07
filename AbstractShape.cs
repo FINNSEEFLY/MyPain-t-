@@ -17,7 +17,7 @@ namespace Shapes
         public Color penColor;
         public Color brushColor;
         public Point[] pointArray;
-        public int maxNumberOfDots=0;
+        public int MaxNumberOfDots { get; set; }
 
         // Абстрактный метод отрисовки
         public abstract void Draw(Graphics graphics);

@@ -1,21 +1,21 @@
 ﻿using System.Drawing;
-using System.Collections.Generic;
 using System;
+using Shapes;
 
 namespace Shapes
 {
     //
-    // Класс многоугольника
+    // Класс ломаной линии
     //
     [Serializable]
-    public class Polygon : AbstractShape
+    class MultipleConnectedDots : AbstractShape
     {
-        public Polygon()
+        public MultipleConnectedDots()
         {
             pointArray = new Point[0];
             MaxNumberOfDots = 0;
         }
-        public Polygon(Color pencolor, Color brushcolor)
+        public MultipleConnectedDots(Color pencolor, Color brushcolor)
         {
             penColor = pencolor;
             brushColor = brushcolor;
@@ -24,8 +24,16 @@ namespace Shapes
         }
         public override void Draw(Graphics graphics)
         {
-            graphics.FillPolygon(new SolidBrush(brushColor), pointArray);
-            graphics.DrawPolygon(new Pen(penColor), pointArray);
+            using (var pen = new Pen(penColor))
+            {
+                for (int i = 0; i < pointArray.Length - 1; i++)
+                {
+                    for (int j = i + 1; j < pointArray.Length; j++)
+                    {
+                        graphics.DrawLine(pen, pointArray[i], pointArray[j]);
+                    }
+                }
+            }
         }
         public override void Init(Point[] pointarray)
         {
@@ -33,7 +41,7 @@ namespace Shapes
         }
         public override object Clone()
         {
-            var tmp = new Polygon(penColor, brushColor);
+            var tmp = new MultipleConnectedDots(penColor, brushColor);
             tmp.Init(pointArray);
             return tmp;
         }

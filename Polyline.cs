@@ -12,14 +12,14 @@ namespace Shapes
         public Polyline()
         {
             pointArray = new Point[0];
-            maxNumberOfDots = 0;
+            MaxNumberOfDots = 0;
         }
         public Polyline(Color pencolor, Color brushcolor)
         {
             penColor = pencolor;
             brushColor = brushcolor;
             pointArray = new Point[0];
-            maxNumberOfDots = 0;
+            MaxNumberOfDots = 0;
         }
         public override void Draw(Graphics graphics)
         {

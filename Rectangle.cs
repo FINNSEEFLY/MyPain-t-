@@ -12,14 +12,14 @@ namespace Shapes
         public Rectangle()
         {
             pointArray = new Point[2];
-            maxNumberOfDots = 2;
+            MaxNumberOfDots = 2;
         }
         public Rectangle(Color pencolor, Color brushcolor)
         {
             penColor = pencolor;
             brushColor = brushcolor;
             pointArray = new Point[2];
-            maxNumberOfDots = 2;
+            MaxNumberOfDots = 2;
         }
         public override void Init(Point[] pointarray)
         {
