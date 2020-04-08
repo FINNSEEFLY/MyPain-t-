@@ -88,7 +88,7 @@ namespace MyPaint
                                 factoryList.Add(new ShapeFactoryDescription { Name = factory.ShapeName, Create = factory.Create });
                             }
                         }
-                        catch (Exception exception)
+                        catch
                         {
                             MessageBox.Show("Ошибка загрузки сборки " + assemblyNames[i] + " \n", "Ошибка загрузки сборки", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                             assemblyNames.RemoveAt(i);
@@ -112,6 +112,37 @@ namespace MyPaint
             else
             {
                 File.Create(ASSEMBLY_LIST_PATH).Dispose();
+            }
+        }
+        
+        // Метод перезагрузки меню комбобокса
+        public void ReloadCombobox()
+        {
+            cmbShapeSwitch.SelectedValueChanged -= new System.EventHandler(cmbShapeSwitch_SelectedValueChanged);
+            cmbShapeSwitch.DataSource = null;
+            cmbShapeSwitch.DataSource = factoryList;
+            cmbShapeSwitch.DisplayMember = "Name";
+            cmbShapeSwitch.ValueMember = "Create";
+            cmbShapeSwitch.SelectedValueChanged += new System.EventHandler(cmbShapeSwitch_SelectedValueChanged);
+        }
+
+        // Метод добавления нового имени сборки в файл списка сборок
+        public void AddNewAssemblyInList(String FileName)
+        {
+            if (File.Exists(ASSEMBLY_LIST_PATH))
+            {
+                try
+                {
+                    File.AppendAllText(ASSEMBLY_LIST_PATH, FileName + "\n");
+                }
+                catch
+                {
+                    MessageBox.Show("Не добавить новую сборку в список", "Ошибка сохранения списка сборок", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            }
+            else
+            {
+                File.Create(ASSEMBLY_LIST_PATH);
             }
         }
 
@@ -339,7 +370,6 @@ namespace MyPaint
                 File.Copy(openFileDialogLoadAssembly.FileName, fileNameWithExtension, true);
                 try
                 {
-                    //Assembly assembly = Assembly.LoadFrom(openFileDialogLoadAssembly.FileName);
                     Assembly assembly = Assembly.LoadFile(openFileDialogLoadAssembly.FileName);
                     Type baseShapeFactory = typeof(AbstractShapeFactory);
                     IEnumerable<Type> ShapeFactoryList = assembly.GetTypes().Where(type => type.IsSubclassOf(baseShapeFactory));
@@ -348,27 +378,8 @@ namespace MyPaint
                         var factory = (AbstractShapeFactory)listitem.GetConstructors()[0].Invoke(new object[0]);
                         factoryList.Add(new ShapeFactoryDescription { Name = factory.ShapeName, Create = factory.Create });
                     }
-                    cmbShapeSwitch.SelectedValueChanged -= new System.EventHandler(cmbShapeSwitch_SelectedValueChanged);
-                    cmbShapeSwitch.DataSource = null;
-                    cmbShapeSwitch.DataSource = factoryList;
-                    cmbShapeSwitch.DisplayMember = "Name";
-                    cmbShapeSwitch.ValueMember = "Create";
-                    cmbShapeSwitch.SelectedValueChanged += new System.EventHandler(cmbShapeSwitch_SelectedValueChanged);
-                    if (File.Exists(ASSEMBLY_LIST_PATH))
-                    {
-                        try
-                        {
-                            File.AppendAllText(ASSEMBLY_LIST_PATH, fileNameWithoutExtension + "\n");
-                        }
-                        catch
-                        {
-                            MessageBox.Show("Не добавить новую сборку в список", "Ошибка сохранения списка сборок", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        }
-                    }
-                    else
-                    {
-                        File.Create(ASSEMBLY_LIST_PATH);
-                    }
+                    ReloadCombobox();
+                    AddNewAssemblyInList(fileNameWithoutExtension);
                 }
                 catch (Exception exception)
                 {
